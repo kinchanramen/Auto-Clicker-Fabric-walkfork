@@ -39,12 +39,14 @@ public class AutoClicker implements ModInitializer {
     public static Holding.AttackHolding leftHolding;
     public static Holding rightHolding;
     public static Holding jumpHolding;
+    public static Holding walkHolding;
     private static AutoClicker INSTANCE;
     private boolean isActive = false;
     private Config config = new Config(
             new Config.LeftMouseConfig(false, false, 0, false, false),
             new Config.RightMouseConfig(false, false, 0),
-            new Config.JumpConfig(false, false, 0)
+            new Config.JumpConfig(false, false, 0),
+            new Config.WalkConfig(false,false,0)
     );
     
     public AutoClicker() {
@@ -94,6 +96,7 @@ public class AutoClicker implements ModInitializer {
         leftHolding = new Holding.AttackHolding(client.options.attackKey, this.config.getLeftClick());
         rightHolding = new Holding(client.options.useKey, this.config.getRightClick());
         jumpHolding = new Holding(client.options.jumpKey, this.config.getJump());
+        walkHolding=new Holding(client.options.forwardKey,this.config.getWalk());
     }
 
     public void saveConfig() {
@@ -109,7 +112,7 @@ public class AutoClicker implements ModInitializer {
     }
 
     private void RenderGameOverlayEvent(DrawContext context, float delta) {
-        if ((!leftHolding.isActive() && !rightHolding.isActive() && !jumpHolding.isActive()) || !this.isActive) {
+        if ((!leftHolding.isActive() && !rightHolding.isActive() && !jumpHolding.isActive()&&!walkHolding.isActive()) || !this.isActive) {
             return;
         }
 
@@ -131,6 +134,11 @@ public class AutoClicker implements ModInitializer {
         if (jumpHolding.isActive()) {
             Text text = Language.HUD_HOLDING.getText(I18n.translate(jumpHolding.getKey().getTranslationKey()));
             context.drawTextWithShadow(client.textRenderer, text.asOrderedText(), 10, y, 0xffffff);
+            y+=15;
+        }
+        if(walkHolding.isActive()){
+            Text text=Language.HUD_HOLDING.getText(I18n.translate(walkHolding.getKey().getTranslationKey()));
+            context.drawTextWithShadow(client.textRenderer,text.asOrderedText(),10, y,0xffffff);
         }
     }
 
@@ -150,6 +158,9 @@ public class AutoClicker implements ModInitializer {
 
             if (jumpHolding.isActive()) {
                 this.handleActiveHolding(mc, jumpHolding);
+            }
+            if(walkHolding.isActive()){
+                this.handleActiveHolding(mc,walkHolding);
             }
         }
 
@@ -245,6 +256,7 @@ public class AutoClicker implements ModInitializer {
                 leftHolding.getKey().setPressed(false);
                 rightHolding.getKey().setPressed(false);
                 jumpHolding.getKey().setPressed(false);
+                walkHolding.getKey().setPressed(false);
             }
         }
 

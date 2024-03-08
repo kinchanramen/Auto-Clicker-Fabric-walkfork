@@ -13,6 +13,7 @@ public enum Language {
     GUI_ATTACK("autoclicker-fabric.gui.attack"),
     GUI_USE("autoclicker-fabric.gui.use"),
     GUI_JUMP("autoclicker-fabric.gui.jump"),
+    GUI_WALK("autoclicker-fabric.gui.walk"),
     GUI_RESPECT_COOLDOWN("autoclicker-fabric.gui.respect"),
     GUI_MOB_MODE("autoclicker-fabric.gui.mob-mode");
 

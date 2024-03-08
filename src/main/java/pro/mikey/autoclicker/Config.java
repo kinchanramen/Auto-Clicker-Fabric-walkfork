@@ -5,11 +5,13 @@ public class Config {
     private final LeftMouseConfig leftClick;
     private final RightMouseConfig rightClick;
     private final JumpConfig jump;
+    private final WalkConfig walk;
 
-    public Config(LeftMouseConfig leftClick, RightMouseConfig rightClick, JumpConfig jump) {
+    public Config(LeftMouseConfig leftClick, RightMouseConfig rightClick, JumpConfig jump, WalkConfig walk) {
         this.leftClick = leftClick;
         this.rightClick = rightClick;
         this.jump = jump;
+        this.walk = walk;
     }
 
     public LeftMouseConfig getLeftClick() {
@@ -23,6 +25,9 @@ public class Config {
     public JumpConfig getJump() {
         return this.jump;
     }
+    public WalkConfig getWalk(){
+        return this.walk;
+    }
 
     @Override
     public String toString() {
@@ -30,6 +35,7 @@ public class Config {
                 "leftClick=" + this.leftClick +
                 ", rightClick=" + this.rightClick +
                 ", jump=" + this.jump +
+                ", walk="+this.walk+
                 '}';
     }
 
@@ -71,6 +77,9 @@ public class Config {
         public JumpConfig(boolean active, boolean spamming, int cpt) {
             super(active, spamming, cpt);
         }
+    }
+    public static class WalkConfig extends SharedConfig{
+        public WalkConfig(boolean active, boolean spamming,int cpt){super(active,spamming,cpt);}
     }
 
     public static class SharedConfig {

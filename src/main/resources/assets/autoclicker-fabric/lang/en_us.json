@@ -12,6 +12,7 @@
   "autoclicker-fabric.gui.attack": "Attack (left click)",
   "autoclicker-fabric.gui.use": "Use (right click)",
   "autoclicker-fabric.gui.jump": "Use (jump)",
+  "autoclicker-fabric.gui.walk": "Use (walk)",
   "autoclicker-fabric.gui.respect": "Respect cooldown: %s",
   "autoclicker-fabric.gui.mob-mode": "Mob mode: %s",
   "autoclicker-fabric.gui.help.active": "If enabled, it will use the options below to determine how to auto click",
